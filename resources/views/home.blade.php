@@ -405,20 +405,20 @@
 </head>
 
 <body class="antialiased">
-    <ul>
-        @foreach ($users as $user)
-        @endforeach
-        <li>
-            {{ $user->name }}
-        </li>
-        <li>
-            {{ $user->email }}
-        </li>
-        <li>
-            {{ $user->password }}
-        </li>
+    @foreach ($users as $user)
+        <ul>
+            <li>
+                {{ $user->name }}
+            </li>
+            <li>
+                {{ $user->email }}
+            </li>
+            <li>
+                {{ $user->password }}
+            </li>
 
-    </ul>
+        </ul>
+    @endforeach
 </body>
 
 </html>

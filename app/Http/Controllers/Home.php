@@ -11,6 +11,8 @@ class Home extends Controller
     {
         $users = User::all();
 
+        // dd($users);
+
         return view('home', compact('users'));
     }
 }
