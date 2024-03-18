@@ -27,7 +27,19 @@
                         <th>{{ $user->name . ' ' . $user->lastname }}</th>
                         <th>{{ $user->email }}</th>
                         <th>{{ $user->address }}</th>
-                        <th>AZIONI</th>
+                        <th class="d-flex flex-row gap-3">
+                            <div>
+                                <i class="fa-regular fa-eye"></i>
+                            </div>
+                            <div>
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <i class="fa-regular fa-trash-can"></i>
+                            </div>
+                        </th>
                     </tr>
                 @endforeach
             </tbody>
