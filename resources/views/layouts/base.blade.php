@@ -19,6 +19,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+
+    @vite('resources/js/app.js')
+
     <title>{{ env('APP_NAME') }} - @yield('title')</title>
 </head>
 

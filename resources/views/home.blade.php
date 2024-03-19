@@ -28,21 +28,48 @@
                         <th>{{ $user->email }}</th>
                         <th>{{ $user->address }}</th>
                         <th class="d-flex flex-row gap-3">
-                            <div>
-                                <i class="fa-regular fa-eye"></i>
-                            </div>
-                            <div>
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </div>
+
+                            @if (auth()->id() === $user->id)
+                                <div>
+                                    <i class="fa-regular fa-eye"></i>
+                                </div>
+                            @else
+                                <div>
+                                    <i class="fa-regular fa-eye"></i>
+                                </div>
+
+                                <div>
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </div>
+                            @endif
+
                         </th>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     @endguest
+@endsection
+
+
+@section('modal')
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userModalLabel">Dettagli utente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Nome: <span id="userName"></span></p>
+                    <p>Email: <span id="userEmail"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

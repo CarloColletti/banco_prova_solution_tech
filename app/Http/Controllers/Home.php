@@ -10,11 +10,13 @@ class Home extends Controller
 {
     public function home()
     {
-        // $users = User::all();
-        $users = User::all()->except(Auth::id());
-
-        //blocca le azioni di te stesso
+        $users = User::all();
 
         return view('home', compact('users'));
+    }
+
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
     }
 }
