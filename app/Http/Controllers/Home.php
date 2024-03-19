@@ -13,6 +13,8 @@ class Home extends Controller
         // $users = User::all();
         $users = User::all()->except(Auth::id());
 
+        //blocca le azioni di te stesso
+
         return view('home', compact('users'));
     }
 }
