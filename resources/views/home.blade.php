@@ -44,6 +44,12 @@
                                     </a>
                                 </div>
                                 <div>
+                                    <form action="{{ route('user.destroy', ['user' => $user]) }}" method="POST"
+                                        class="px-2 text-danger">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger">Elimina</button>
+                                    </form>
                                     <i class="fa-regular fa-trash-can"></i>
                                 </div>
                             @endif

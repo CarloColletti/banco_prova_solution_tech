@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Home;
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/{user}', function (User $user) {
+        if ($user->id === auth()->user()->id) {
+            return abort(403);
+        }
+
+        $user->delete();
+
+        return redirect()->route('home');
+    })->name('user.destroy');
 });
 
 require __DIR__ . '/auth.php';
