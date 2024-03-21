@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Home;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    // Route::get('/', [Home::class, 'home'])->name('home');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -40,6 +40,28 @@ Route::middleware('auth')->group(function () {
 
         return redirect()->route('home');
     })->name('user.destroy');
+
+    Route::get(
+        '/user/{user}',
+        function (User $user) {
+            // dd($user);
+            return view('editdue', compact('user'));
+        }
+    )->name('user.edit');
+
+
+    Route::put('/user/{user}', function (Request $request, User $user) {
+        $form_data = $request->all();
+
+        // $this->validation($form_data);
+
+        $user->update($form_data);
+
+        // dd($user);
+        $user->save();
+
+        return redirect()->route('home');
+    })->name('user.update');
 });
 
 require __DIR__ . '/auth.php';

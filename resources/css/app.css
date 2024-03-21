@@ -2,7 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.topButton{
-  padding-top: 2.5px;
-}

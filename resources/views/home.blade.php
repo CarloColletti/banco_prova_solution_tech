@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div>
-                                    <a class="dropdown-item topButton" href="{{ route('profile.edit') }}">
+                                    <a class="dropdown-item topButton" href="{{ route('user.edit', $user) }}">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
                                 </div>
@@ -54,8 +54,6 @@
                                         data-bs-target="#delete-modal-{{ $user->id }}" title="Elimina">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
-
-
                                 </div>
                             @endif
 
