@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div>
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    <a class="dropdown-item topButton" href="{{ route('profile.edit') }}">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
                                 </div>

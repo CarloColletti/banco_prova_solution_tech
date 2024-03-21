@@ -24,6 +24,8 @@
 
     @vite('resources/js/app.js')
 
+    @vite('resources/css/app.css')
+
     <title>{{ env('APP_NAME') }} - @yield('title')</title>
 </head>
 
