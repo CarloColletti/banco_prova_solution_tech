@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Module Network</title>
+    <title>Network @yield('title')</title>
 
     {{-- FontAwsome  --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -30,7 +30,11 @@
 </head>
 
 <body>
-    @yield('content')
+
+    @include('layouts.partials._navbar')
+    <main class="py-5 container">
+        @yield('content')
+    </main>
 
     {{-- Laravel Vite - JS File --}}
     {{-- {{ module_vite('build-network', 'Resources/assets/js/app.js') }} --}}
