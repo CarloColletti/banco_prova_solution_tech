@@ -2,6 +2,7 @@
 
 namespace Modules\Network\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -12,9 +13,10 @@ class NetworkController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(User $users)
     {
-        return view('network::index');
+        $users = User::all();
+        return view('network::index', compact('users'));
     }
 
     /**

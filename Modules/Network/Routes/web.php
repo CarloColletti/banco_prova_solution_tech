@@ -11,6 +11,14 @@
 |
 */
 
-Route::prefix('network')->group(function() {
+use Illuminate\Support\Facades\Route;
+use Modules\Network\Http\Controllers\NetworkController;
+
+Route::prefix('network')->group(function () {
     Route::get('/', 'NetworkController@index');
 });
+
+
+// Route::prefix('network')->group(function () {
+//     Route::resources('/', NetworkController::class);
+// });
