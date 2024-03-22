@@ -41,7 +41,7 @@
                             </div>
 
                             <div>
-                                <a class="dropdown-item topButton" href="{{ route('user.edit', $user) }}">
+                                <a class="dropdown-item topButton" href="{{ route('network.edit', $user->id) }}">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                             </div>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                        <form action="{{ route('user.destroy', ['user' => $user]) }}" method="POST"
+                        <form action="{{ route('network.destroy', ['user' => $user]) }}" method="POST"
                             class="px-2 text-danger">
                             @csrf
                             @method('delete')

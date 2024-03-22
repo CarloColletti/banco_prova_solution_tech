@@ -6,7 +6,7 @@
 
 
 @section('content')
-    <form action="{{ route('user.update', $user) }}" enctype="multipart/form-data" method="POST" class="form-edit"
+    <form action="{{ route('network.update', $user) }}" enctype="multipart/form-data" method="POST" class="form-edit"
         data-modalita="edit">
         @method('put')
         @csrf

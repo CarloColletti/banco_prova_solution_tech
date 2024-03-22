@@ -23,6 +23,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
+    @vite('resources/assets/js/app.js')
+    @vite('resources/assets/css/app.css')
+
 
     {{-- Laravel Vite - CSS File --}}
     {{-- {{ module_vite('build-network', 'Resources/assets/sass/app.scss') }} --}}
