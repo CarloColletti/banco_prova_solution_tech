@@ -17,7 +17,8 @@ class NetworkController extends Controller
     public function index(User $users)
     {
         $users = User::all();
-        return view('network::index', compact('users'));
+        $numberDead = User::onlyTrashed()->count();
+        return view('network::index', compact('users', 'numberDead'));
     }
 
     /**
@@ -96,6 +97,42 @@ class NetworkController extends Controller
 
         return redirect()->route('network.index');
     }
+
+    public function trash()
+    {
+        $users = User::onlyTrashed()->get();
+
+        // dd($users);
+
+        return view('network::trash', compact('users'));
+    }
+
+
+    public function force_delete(Int $id)
+    {
+        // query lunga per risolvere il problema della dipendence injection 
+        $user = User::where('id', $id)->onlyTrashed()->first();
+
+        if ($user->id === auth()->user()->id) {
+            return abort(403);
+        }
+
+        $user->forceDelete();
+
+        return redirect()->route('network.index');
+    }
+
+    public function restore(Int $id)
+    {
+        // query lunga per risolvere il problema della dipendence injection 
+        $user = User::where('id', $id)->onlyTrashed()->first();
+
+        $user->restore();
+
+        return redirect()->route('network.index');
+    }
+
+
 
 
     private function validation($form_data)
