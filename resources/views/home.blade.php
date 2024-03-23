@@ -6,6 +6,17 @@
 
 
 @section('content')
+    {{-- link for network session --}}
+    <div class="row">
+        <div class="col py-4">
+            <a href="{{ route('network.index') }}">
+                <span class="btn btn-success">
+                    divertiti nel network
+                </span>
+            </a>
+        </div>
+    </div>
+    {{-- init table  --}}
     <table class="table table-striped">
         @guest
             <h1>ACCEDI O REGISTRATI PER VISUALIZZARE GLI UTENTI</h1>
@@ -62,6 +73,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{-- end table  --}}
     @endguest
 @endsection
 

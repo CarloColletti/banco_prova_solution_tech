@@ -5,6 +5,17 @@
 @endsection
 
 @section('content')
+    {{-- link for turn back at origin home --}}
+    <div class="row">
+        <div class="col py-4">
+            <a href="{{ route('home') }}">
+                <span class="btn btn-success">
+                    esci fuori dalla zona del network
+                </span>
+            </a>
+        </div>
+    </div>
+
     <table class="table table-striped">
         <thead>
             <tr>
