@@ -26,4 +26,7 @@ Route::prefix('network')->group(function () {
     Route::match(['put', 'patch'], '/{user}', 'NetworkController@update')->name('network.update');
     Route::delete('/{user}', 'NetworkController@destroy')->name('network.destroy');
     Route::get('/{user}/edit', 'NetworkController@edit')->name('network.edit');
+    Route::get('/user/trash', 'NetworkController@trash')->name('network.trash');
+    Route::post('/user/{user}/restore', 'NetworkController@restore')->name('network.restore');
+    Route::delete('/user/{user}/force-delete', 'NetworkController@force_delete')->name('network.force_delete');
 });
