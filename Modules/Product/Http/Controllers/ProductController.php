@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -42,7 +43,36 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+
+        dd($request->all());
+
+        // $this->validation($form_data);
+
+        $product = new Product();
+
+        if ($request->hasFile('product_image')) {
+
+            dd('ciao');
+
+            $path = Storage::put('product_image', $request->product_image);
+
+            dd($path);
+
+            $form_data['product_image'] = $path;
+
+            $product->photo_link = $form_data['product_image'];
+        }
+        $product->creator_id = Auth::id();
+        // dd($product);
+
+        $product->fill($form_data);
+
+        dd($product);
+
+        $product->save();
+
+        return redirect()->route('product.index');
     }
 
     /**
