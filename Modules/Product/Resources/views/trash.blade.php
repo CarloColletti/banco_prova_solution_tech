@@ -1,20 +1,20 @@
 @extends('product::layouts.master')
 
 @section('title')
-    User
+    Cimitero
 @endsection
 
+
 @section('content')
-    <div class=" d-flex flex-row  justify-content-between pb-4">
-
-        {{-- link to user trashcan  --}}
-        <a href="{{ route('product.trash') }}">
-            <span class="btn btn-danger">
-                cimitero {{ $numberDead > 0 ? $numberDead : '' }}
-            </span>
-        </a>
-
-
+    {{-- link for turn back at network.index --}}
+    <div class="row">
+        <div class="col py-4">
+            <a href="{{ route('network.index') }}">
+                <span class="btn btn-success">
+                    esci dal cimitero
+                </span>
+            </a>
+        </div>
     </div>
 
     <table class="table table-striped">
@@ -24,10 +24,11 @@
                 <th>Nome Completo</th>
                 <th>Email</th>
                 <th>Indirizzo</th>
+                <th>Data Eliminazione</th>
+                <th>Ora Eliminazione</th>
                 <th>Azioni</th>
             </tr>
         </thead>
-
         <tbody>
             @foreach ($users as $user)
                 <tr>
@@ -35,36 +36,31 @@
                     <th>{{ $user->name . ' ' . $user->lastname }}</th>
                     <th>{{ $user->email }}</th>
                     <th>{{ $user->address }}</th>
+                    <th class="text-center">{{ $user->deleted_at->format('Y-m-d') }}</th>
+                    <th class="text-center">{{ $user->deleted_at->format('H:i') }}</th>
                     <th class="d-flex flex-row gap-3">
 
-                        @if (auth()->id() === $user->id)
-                            <div>
-                                <button class="btn p-0 m-0" data-bs-toggle="modal"
-                                    data-bs-target="#detail-modal-{{ $user->id }}" title="detail">
-                                    <i class="fa-regular fa-eye"></i>
-                                </button>
-                            </div>
-                        @else
-                            <div>
-                                <button class="btn p-0 m-0" data-bs-toggle="modal"
-                                    data-bs-target="#detail-modal-{{ $user->id }}" title="detail">
-                                    <i class="fa-regular fa-eye"></i>
-                                </button>
-                            </div>
-
-                            <div>
-                                <a class="dropdown-item topButton" href="{{ route('network.edit', $user->id) }}">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <button class="text-danger btn p-0 m-0" data-bs-toggle="modal"
-                                    data-bs-target="#delete-modal-{{ $user->id }}" title="Elimina">
-                                    <i class="fa-regular fa-trash-can"></i>
-                                </button>
-                            </div>
-                        @endif
-
+                        <div>
+                            <button class="btn p-0 m-0" data-bs-toggle="modal"
+                                data-bs-target="#detail-modal-{{ $user->id }}" title="detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <form action="{{ route('network.restore', ['user' => $user]) }}" method="POST"
+                                class="px-2 text-danger">
+                                @csrf
+                                @method('post')
+                                <button type="submit" class="btn p-0 m-0 text-success"><i
+                                        class="fa-solid fa-recycle"></i></button>
+                            </form>
+                        </div>
+                        <div>
+                            <button class="text-danger btn p-0 m-0" data-bs-toggle="modal"
+                                data-bs-target="#delete-modal-{{ $user->id }}" title="Elimina">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
                     </th>
                 </tr>
             @endforeach
@@ -76,6 +72,7 @@
 
 @section('modal')
     {{-- modal for detail --}}
+
     @foreach ($users as $user)
         <div class="modal fade" id="detail-modal-{{ $user->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -109,8 +106,8 @@
 
 
 
-
     {{-- modal for delete --}}
+
     @foreach ($users as $user)
         <div class="modal fade" id="delete-modal-{{ $user->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -123,12 +120,13 @@
                     </div>
                     <div class="modal-body">
                         Se si procede, l'utente: <span class="text-danger fw-semibolt">
-                            {{ $user->name }} {{ $user->lastname }}</span> verrà eliminato.<br>
+                            {{ $user->name }} {{ $user->lastname }}</span> verrà eliminato DEFINITIVAMNTE.<br>
+                        L'operazione non è reversibile <br>
                         Vuoi davvero procedere?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                        <form action="{{ route('network.destroy', ['user' => $user]) }}" method="POST"
+                        <form action="{{ route('network.force_delete', ['user' => $user]) }}" method="POST"
                             class="px-2 text-danger">
                             @csrf
                             @method('delete')
@@ -139,5 +137,7 @@
             </div>
         </div>
     @endforeach
+
+
     {{-- end modal for delete --}}
 @endsection
