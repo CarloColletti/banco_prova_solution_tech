@@ -16,3 +16,5 @@ yarn-error.log
 
 /Modules
 /Modules/Network/node_modules
+/Modules/Orders/node_modules
+/Modules/Product/node_modules
