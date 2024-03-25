@@ -121,7 +121,7 @@
                         {{-- name --}}
                         <div class="mb-3">
                             <label for="name" class="form-label">Nome:</label>
-                            <input name="text" class="form-control" id="name" name="name"
+                            <input type="text" class="form-control" id="name" name="name"
                                 value="{{ old('name') }}">
                             @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -203,17 +203,16 @@
                         {{-- IMAGES INPUT --}}
                         <div class="mb-4">
                             <div class="form-group py-3 d-flex flex-column">
-                                <label for="photo_link">Scegli foto:</label>
-                                <input class="py-2" type="file" class="form-control" id="photo_link"
-                                    name="photo_link" @if (empty($product->product_image)) required @endif>
-                                <div id="image-validation-message"></div>
+                                <label for="product_image">Scegli foto:</label>
+                                <input class="py-2" type="file" class="form-control" id="product_image"
+                                    name="product_image">
                             </div>
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-success">Save changes</button>
                     </div>
                 </form>
             </div>
