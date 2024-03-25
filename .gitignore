@@ -15,3 +15,6 @@ yarn-error.log
 /.vscode
 
 /Modules/Network/node_modules
+/Modules/Orders/node_modules
+/Modules/Product/node_modules
+
