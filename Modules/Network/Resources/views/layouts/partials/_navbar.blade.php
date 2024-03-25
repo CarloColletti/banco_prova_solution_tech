@@ -43,6 +43,7 @@
                             <a class="dropdown-item" href="{{ route('register') }}">Register</a>
                         @else
                             <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                            <a class="dropdown-item" href="{{ route('product.index') }}">Miei Prodotti</a>
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
