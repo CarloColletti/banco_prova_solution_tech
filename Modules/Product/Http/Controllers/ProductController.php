@@ -2,10 +2,12 @@
 
 namespace Modules\Product\Http\Controllers;
 
+use App\Models\User;
 use Modules\Product\Entities\Product;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -15,9 +17,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $numberDead = Product::onlyTrashed()->count();
-        return view('product::index', compact('products', 'numberDead'));
+        $user = Auth::id();
+        $products = Product::where('creator_id', $user)->get();
+        // $products = Product::all();
+        // $numberDead = Product::where('creator_id', $user)->get()->onlyTrashed()->count();
+        // $numberDead = Product::withTrashed()->where('creator_id', $user)->count('id');
+
+        return view('product::index', compact('products'));
     }
 
     /**

@@ -10,7 +10,7 @@
         {{-- link to product trashcan  --}}
         <a href="{{ route('product.trash') }}">
             <span class="btn btn-danger">
-                cimitero {{ $numberDead > 0 ? $numberDead : '' }}
+                cimitero {{-- {{ $numberDead > 0 ? $numberDead : '' }} --}}
             </span>
         </a>
 
