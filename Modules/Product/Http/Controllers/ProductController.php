@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Http\Controllers;
 
+use Modules\Product\Entities\Product;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -14,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product::index');
+        $products = Product::all();
+        $numberDead = Product::onlyTrashed()->count();
+        return view('product::index', compact('products', 'numberDead'));
     }
 
     /**
@@ -75,5 +78,40 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function trash()
+    {
+        $products = Product::onlyTrashed()->get();
+
+        // dd($users);
+
+        return view('product::trash', compact('products'));
+    }
+
+
+    public function force_delete(Int $id)
+    {
+        // query lunga per risolvere il problema della dipendence injection 
+        $product = Product::where('id', $id)->onlyTrashed()->first();
+
+        // if ($user->id === auth()->user()->id) {
+        //     return abort(403);
+        // }
+
+        $product->forceDelete();
+
+        return redirect()->route('product.index');
+    }
+
+    public function restore(Int $id)
+    {
+        // query lunga per risolvere il problema della dipendence injection 
+        // $user = User::where('id', $id)->onlyTrashed()->first();
+
+        // $user->restore();
+
+        return redirect()->route('product.index');
     }
 }

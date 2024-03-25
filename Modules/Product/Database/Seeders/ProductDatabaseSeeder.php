@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Database\Seeders;
 
+use App\Modules\Product\Database\Seeders\ProductSeederTableSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,9 @@ class ProductDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        // $this->call([
+
+        //     ProductSeederTableSeeder::class,
+        // ]);
     }
 }
