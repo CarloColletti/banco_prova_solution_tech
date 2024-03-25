@@ -20,7 +20,6 @@ class Product extends Model
         'width',
         'depth',
         'stock_quntity',
-        'product_image',
         'price'
     ];
 
