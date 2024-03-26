@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         $form_data = $request->all();
 
-        dd($request->all());
+        // dd($request->all());
 
         // $this->validation($form_data);
 
@@ -53,22 +53,24 @@ class ProductController extends Controller
 
         if ($request->hasFile('product_image')) {
 
-            dd('ciao');
+            // dd('ciao');
 
-            $path = Storage::put('product_image', $request->product_image);
+            $path = Storage::put('public/product_image', $request->product_image);
 
-            dd($path);
+            $image_path = str_replace('public/', '', $path);
 
-            $form_data['product_image'] = $path;
+            // dd($image_path);
 
-            $product->photo_link = $form_data['product_image'];
+
+            $form_data['product_image'] = $image_path;
+
+            $product->product_image = $form_data['product_image'];
         }
         $product->creator_id = Auth::id();
-        // dd($product);
 
         $product->fill($form_data);
 
-        dd($product);
+        // dd($product);
 
         $product->save();
 

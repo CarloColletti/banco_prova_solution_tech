@@ -50,7 +50,11 @@
                     <th>{{ $product->height }}</th>
                     <th>{{ $product->width }}</th>
                     <th>{{ $product->depth }}</th>
-                    <th>{{ $product->product_image }}</th>
+
+                    <th>
+                        <img src="{{ asset('storage/' . $product->product_image) }}" class="card-img-top img-fluid"
+                            alt="product_photo_{{ $product->product_name }}">
+                    </th>
                     <th class="d-flex flex-row gap-3">
 
 
