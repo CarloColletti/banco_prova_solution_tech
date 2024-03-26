@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -47,7 +48,7 @@ class ProductController extends Controller
 
         // dd($request->all());
 
-        // $this->validation($form_data);
+        $this->validation($form_data);
 
         $product = new Product();
 
@@ -151,5 +152,51 @@ class ProductController extends Controller
         // $user->restore();
 
         return redirect()->route('product.index');
+    }
+
+
+
+    private function validation($form_data)
+    {
+        $validator = Validator::make(
+            $form_data,
+            [
+                'name' => 'required|min:2|max:30',
+                'type' => 'required|min:2|max:20',
+                'weight' => 'nullable',
+                'height' => 'nullable',
+                'width' => 'nullable',
+                'depth' => 'nullable',
+                'stock_quntity' => 'required|integer',
+                'product_image' => 'nullable|image',
+                'price' => 'required|numeric|between:0.00,9999.99',
+            ],
+            [
+                //name
+                'name.required' => 'Inserire il nome',
+                'name.max' => 'Il nome è troppo lungo',
+                'name.min' => 'Il nome è troppo corto',
+
+                //type
+                'type.required' => 'Inserire il cognome',
+                'type.min' => 'Il cognome è troppo piccolo',
+                'type.max' => 'Il cognome è troppo grande',
+
+                //stock_quntity
+                'stock_quntity.required' => 'Inserire la quantà del prodotto',
+                'stock_quntity.integer' => 'Inserisci un numero valido (numero intero)',
+
+                //product_image
+                'product_image.image' => "Il file deve essere in'immagine",
+
+                //price
+                'price.requider' => 'Inserire un prezzo al prodotto',
+                'price.numeric' => 'Il valore deve essere un numero',
+                'price.between' => 'Il valore deve essere un numero valido',
+
+
+
+            ]
+        )->validate();
     }
 }
