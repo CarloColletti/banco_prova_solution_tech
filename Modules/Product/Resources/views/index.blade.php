@@ -26,7 +26,7 @@
     <div class="row">
         @foreach ($products as $product)
             {{-- avrei creato un componente card come per avbar ma laravel ha detto NO --}}
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 g-4 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
                     <div style="width: 18rem; heigth: 18rem">
                         <img src="{{ asset('storage/' . $product->product_image) }}" class="card-img-top img-fluid"
