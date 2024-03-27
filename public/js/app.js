@@ -1,55 +1,65 @@
-console.log('ciao');
+// console.log('ciao');
 
-const openModalBtns = document.querySelectorAll('.btn-primary');
-
-openModalBtns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const productId = btn.dataset.productId;
-    const productName = btn.dataset.productName;
-
-    // Crea l'oggetto dati
-    const productData = {
-      id: productId,
-      name: productName,
-      // ... altri dati del prodotto ...
-    };
-
-    // Invia i dati alla modal
-    const modal = new bootstrap.Modal('#modal');
-    modal.show(productData);
-  });
-});
-
-
-
-
-
-const modal = new bootstrap.Modal('#modal', {backdrop: 'true'});
+const openModalBtns = document.querySelectorAll('.btm-show');
+const modal = new bootstrap.Modal('#modal', { backdrop: 'true' });
 
 openModalBtns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const productId = btn.dataset.productId;
-    const productName = btn.dataset.productName;
-    
-    // ... (Your code to fetch other product details) ...
+    btn.addEventListener('click', () => {
+        // Accedi agli attributi "data-" all'interno del ciclo
+        const productStock = btn.dataset.productStock;
+        const productPrice = btn.dataset.productPrice;
+        const productName = btn.dataset.productName;
+        const productType = btn.dataset.productType;
+        const productWeight = btn.dataset.productWeight;
+        const productHeight = btn.dataset.productHeight;
+        const productWidth = btn.dataset.productWidth;
+        const productDepth = btn.dataset.productDepth;
+        const productImage = btn.dataset.productImage;
 
-    // Create product data object
-    const productData = {
-      id: productId,
-      name: productName,
-      // ... other product details ...
-    };
+        // Crea l'oggetto prodotto per inserire i dati
+        const productData = {
+            stock: productStock,
+            price: productPrice,
+            name: productName,
+            type: productType,
+            weight: productWeight,
+            height: productHeight,
+            width: productWidth,
+            depth: productDepth,
+            image: productImage,
+        };
 
-    // Update modal content based on product data
-    const modalProductId = document.querySelector('#modal-product-id');
-    modalProductId.textContent = productData.id;
 
-    const modalProductName = document.querySelector('#modal-product-name');
-    modalProductName.textContent = productData.name;
+        //check per i dati
+        console.log(productData); 
 
-    // ... Update other modal elements ...
+        // aggiorno il contenuto della modale
+        const modalProductStock = document.querySelector('#modal-product-stock');
+        modalProductStock.textContent = productData.stock;
 
-    // Show the modal
-    modal.show(productData);
-  });
+        const modalProductPrice = document.querySelector('#modal-product-price');
+        modalProductPrice.textContent = productData.price;
+
+        const modalProductName = document.querySelector('#modal-product-name');
+        modalProductName.textContent = productData.name;
+
+        const modalProductType = document.querySelector('#modal-product-type');
+        modalProductType.textContent = productData.type;
+
+        const modalProductWeight = document.querySelector('#modal-product-weight');
+        modalProductWeight.textContent = productData.weight;
+
+        const modalProductHeight = document.querySelector('#modal-product-height');
+        modalProductHeight.textContent = productData.height;
+
+        const modalProductWidth = document.querySelector('#modal-product-width');
+        modalProductWidth.textContent = productData.width;
+
+        const modalProductDepth = document.querySelector('#modal-product-depth');
+        modalProductDepth.textContent = productData.depth;
+
+
+        // Mostra la modale
+        modal.show(); 
+    });
 });

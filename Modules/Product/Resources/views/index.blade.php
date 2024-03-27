@@ -23,50 +23,32 @@
 
     </div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Quantità</th>
-                <th>Prezzo</th>
-                <th>Nome</th>
-                <th>Tipo</th>
-                <th>Peso</th>
-                <th>Altezza</th>
-                <th>Larghezza</th>
-                <th>Profondità</th>
-                <th>Image</th>
-                <th>Azioni</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach ($products as $product)
-                <tr>
-                    <th>{{ $product->stock_quntity }}</th>
-                    <th>{{ $product->price }} €</th>
-                    <th>{{ $product->name }}</th>
-                    <th>{{ $product->type }}</th>
-                    <th>{{ $product->weight }}</th>
-                    <th>{{ $product->height }}</th>
-                    <th>{{ $product->width }}</th>
-                    <th>{{ $product->depth }}</th>
-
-                    <th>
+    <div class="row">
+        @foreach ($products as $product)
+            {{-- avrei creato un componente card come per avbar ma laravel ha detto NO --}}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div style="width: 18rem; heigth: 18rem">
                         <img src="{{ asset('storage/' . $product->product_image) }}" class="card-img-top img-fluid"
                             alt="product_photo_{{ $product->product_name }}">
-                    </th>
-                    <th class="d-flex flex-row gap-3">
-
-
-                        <div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $product->name }}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Quantità: {{ $product->stock_quntity }}</li>
+                        <li class="list-group-item">Prezzo: {{ $product->price }}€</li>
+                        <li class="list-group-item">Tipo: {{ $product->type }}</li>
+                    </ul>
+                    <div class="card-body d-flex gap-4">
+                        <button type="button" class="btn btm-show text-primary p-0 m-0"
+                            data-product-stock="{{ $product->stock_quntity }}" data-product-price="{{ $product->price }}"
+                            data-product-name="{{ $product->name }}" data-product-type="{{ $product->type }}"
+                            data-product-weight="{{ $product->weight }}" data-product-height="{{ $product->height }}"
+                            data-product-width="{{ $product->width }}" data-product-depth="{{ $product->depth }}"
+                            data-product-image="{{ $product->product_image }}">
                             <i class="fa-regular fa-eye"></i>
-
-                            <button type="button" class="btn btn-sm btn-primary" data-product-id="{{ $product->id }}"
-                                data-product-name="{{ $product->name }}">
-                                <i class="fa-regular fa-eye"></i> Apri modal
-                            </button>
-                        </div>
-
+                        </button>
                         <div>
 
                             <i class="fa-regular fa-pen-to-square"></i>
@@ -77,11 +59,11 @@
                             <i class="fa-regular fa-trash-can"></i>
 
                         </div>
-                    </th>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 @endsection
 
 
@@ -97,8 +79,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>ID Prodotto: <span id="modal-product-id"></span></p>
-                    <p>Nome Prodotto: <span id="modal-product-name"></span></p>
+                    <p>Quantità: <span id="modal-product-stock"></span></p>
+                    <p>Prezzo: <span id="modal-product-price"></span></p>
+                    <p>Nome: <span id="modal-product-name"></span></p>
+                    <p>Tipo: <span id="modal-product-type"></span></p>
+                    <p>Peso: <span id="modal-product-weight"></span></p>
+                    <p>Altezza: <span id="modal-product-height"></span></p>
+                    <p>Larghezza: <span id="modal-product-width"></span></p>
+                    <p>Profonodita: <span id="modal-product-depth"></span></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
