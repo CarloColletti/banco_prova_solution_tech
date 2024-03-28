@@ -93,9 +93,15 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        return view('product::edit');
+
+        $product = Product::findOrFail($id);
+
+        // dd($product);
+        // return view('product::edit');
+        return response()->json(['success' => compact('product')]);
+        // return view('product::layouts.partials._modal_edit', compact('product'));
     }
 
     /**

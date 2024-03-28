@@ -25,7 +25,6 @@
 
     <div class="row">
         @foreach ($products as $product)
-            {{-- avrei creato un componente card come per avbar ma laravel ha detto NO --}}
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 g-4 d-flex justify-content-center">
                 @include('product::layouts.partials._card')
             </div>

@@ -63,3 +63,57 @@ openModalBtns.forEach((btn) => {
         modal.show(); 
     });
 });
+
+$(document).ready(function() {
+  $('.edit-button').click(function(e) {
+    e.preventDefault();
+
+    let id = $(this).data('id');
+
+    $.ajax({
+      url: 'product/'+id+'/edit',
+      method: 'GET',
+      success: function(data) {
+        console.log(data);
+        // Precompila i campi del form con i dati ricevuti
+        
+        console.log(data.success.product.name);
+
+        let product = data.success.product;
+        console.log(product.name);
+
+        // console.log(product.name)
+        $('#name_edit').val(product.name);
+        
+
+        
+
+        // Mostra la modale
+        $('#editModal').modal('show');
+      }
+    });
+  });
+});
+
+
+// $(document).ready(function() {
+//   $('#editModal').on('submit', 'form', function(e) {
+//     e.preventDefault();
+
+//     var id = $(this).data('id');
+//     var formData = $(this).serialize();
+
+//     $.ajax({
+//       url: '/controller/update/' + id,
+//       method: 'PUT',
+//       data: formData,
+//       success: function(data) {
+//         // Aggiorna la pagina o la tabella con i dati aggiornati
+//         // ...
+
+//         // Chiudi la modale
+//         $('#editModal').modal('hide');
+//       }
+//     });
+//   });
+// });

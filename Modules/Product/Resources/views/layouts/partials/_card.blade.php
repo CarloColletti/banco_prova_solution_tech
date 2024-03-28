@@ -21,8 +21,11 @@
              <i class="fa-regular fa-eye"></i>
          </button>
          <div>
+             <button type="button" class="btn edit-button text-primary p-0 m-0" data-id="{{ $product->id }}"
+                 data-bs-toggle="modal" data-bs-target="#editModal">
+                 <i class="fa-regular fa-pen-to-square"></i>
+             </button>
 
-             <i class="fa-regular fa-pen-to-square"></i>
 
          </div>
          <div>
