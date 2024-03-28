@@ -22,7 +22,7 @@ Route::prefix('product')->group(function () {
     Route::post('/', 'ProductController@store')->name('product.store');
     Route::get('/create', 'ProductController@create')->name('product.create');
     Route::get('/{product}', 'ProductController@show')->name('product.show');
-    Route::match(['put', 'patch'], '/{user}', 'ProductController@update')->name('product.update');
+    Route::match(['put', 'patch'], '/{id}', 'ProductController@update')->name('product.update');
     Route::delete('/{product}', 'ProductController@destroy')->name('product.destroy');
     Route::get('/{id}/edit', 'ProductController@edit')->name('product.edit');
     Route::get('/product/trash', 'ProductController@trash')->name('product.trash');

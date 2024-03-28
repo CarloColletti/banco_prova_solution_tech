@@ -75,45 +75,43 @@ $(document).ready(function() {
       method: 'GET',
       success: function(data) {
         console.log(data);
-        // Precompila i campi del form con i dati ricevuti
-        
-        console.log(data.success.product.name);
+        // console.log(data.success.product.name);
 
+        // assegna a product l'array dei dati da modificare
         let product = data.success.product;
-        console.log(product.name);
+        let id_for_update_link = data.success.id_for_update_link;
+        let url_image = data.success.url_image;
+        // console.log(id_for_update_link);
+        // console.log(product.name);
 
-        // console.log(product.name)
-        $('#name_edit').val(product.name);
-        
+        //precompila i dati nel form
+        $('#form_edit_product').attr('action', id_for_update_link)
+        $('#name_edit_product').val(product.name);
+        $('#type_edit_product').val(product.type);
+        $('#weight_edit_product').val(product.weight);
+        $('#height_edit_product').val(product.height);
+        $('#width_edit_product').val(product.width);
+        $('#depth_edit_product').val(product.depth);
+        $('#stock_quntity_edit_product').val(product.stock_quntity);
+        $('#price_edit_product').val(product.price);
+        // $('#product_image_edit_product').val(product.product_image);
 
-        
+        console.log(product.product_image);
+
+        if (product.product_image) {
+            $('#existing_product_image').attr('src', "http://127.0.0.1:8000/storage/public/" + product.product_image).show();
+            // $('#existing_product_image').attr('src', url_image).show();
+        } else {
+            $('#existing_product_image').hide();
+        }
+
 
         // Mostra la modale
         $('#editModal').modal('show');
       }
     });
   });
+  
 });
 
 
-// $(document).ready(function() {
-//   $('#editModal').on('submit', 'form', function(e) {
-//     e.preventDefault();
-
-//     var id = $(this).data('id');
-//     var formData = $(this).serialize();
-
-//     $.ajax({
-//       url: '/controller/update/' + id,
-//       method: 'PUT',
-//       data: formData,
-//       success: function(data) {
-//         // Aggiorna la pagina o la tabella con i dati aggiornati
-//         // ...
-
-//         // Chiudi la modale
-//         $('#editModal').modal('hide');
-//       }
-//     });
-//   });
-// });

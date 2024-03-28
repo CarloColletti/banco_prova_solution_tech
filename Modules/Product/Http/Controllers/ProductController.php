@@ -54,9 +54,11 @@ class ProductController extends Controller
 
         if ($request->hasFile('product_image')) {
 
-            // dd('ciao');
+            // dd($request->product_image);
 
             $path = Storage::put('public/product_image', $request->product_image);
+
+            // dd($path);
 
             $image_path = str_replace('public/', '', $path);
 
@@ -97,10 +99,25 @@ class ProductController extends Controller
     {
 
         $product = Product::findOrFail($id);
+        $id_for_update_link = route('product.update', ['id' => $product->id]);
+        // dd($id_for_update_link);
+        if ($product->product_image) {
+            $url_image = Storage::url($product->image);
+        } else {
+            $url_image = null;
+        }
+
+
+
+
 
         // dd($product);
-        // return view('product::edit');
-        return response()->json(['success' => compact('product')]);
+        // 'id_for_update_link', 'url_image'
+        return response()->json(['success' => compact(
+            'product',
+            'id_for_update_link',
+            'url_image'
+        )]);
         // return view('product::layouts.partials._modal_edit', compact('product'));
     }
 
@@ -110,9 +127,47 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product, $id)
     {
-        //
+        $form_data = $request->all();
+
+        // dd($request->all());
+
+        // $this->validation($form_data);
+
+        $product = Product::findOrFail($id);
+
+        // dd($product);
+
+        if ($request->hasFile('product_image')) {
+
+            // dd('ciao');
+            if ($product->product_image) {
+                Storage::delete($product->product_image);
+            }
+
+            $path = Storage::put('public/product_image', $request->product_image);
+
+            // dd($product->product_image);
+
+            $image_path = str_replace('public/', '', $path);
+
+            // dd($image_path);
+
+
+            $form_data['product_image'] = $image_path;
+
+            $product->product_image = $form_data['product_image'];
+        }
+        $product->creator_id = Auth::id();
+
+        $product->fill($form_data);
+
+        // dd($product);
+
+        $product->save();
+
+        return redirect()->route('product.index');
     }
 
     /**

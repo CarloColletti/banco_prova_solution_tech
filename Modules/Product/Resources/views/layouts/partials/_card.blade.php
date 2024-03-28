@@ -1,8 +1,6 @@
  <div class="card" style="width: 18rem;">
-     <div style="width: 18rem; heigth: 18rem">
-         <img src="{{ asset('storage/' . $product->product_image) }}" class="card-img-top img-fluid"
-             alt="product_photo_{{ $product->product_name }}">
-     </div>
+     <img src="{{ asset('storage/public/' . $product->product_image) }}" class="card-img-top img-fluid"
+         alt="product_photo_{{ $product->product_name }}">
      <div class="card-body">
          <h5 class="card-title">{{ $product->name }}</h5>
      </div>
