@@ -43,6 +43,8 @@
     @include('product::layouts.partials._modal_create')
 
     {{-- modal for edit --}}
+    @include('product::layouts.partials._modal_edit')
 
     {{-- modal for delete --}}
+    @include('product::layouts.partials._modal_delete')
 @endsection
