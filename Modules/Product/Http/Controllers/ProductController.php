@@ -100,7 +100,9 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $id_for_update_link = route('product.update', ['id' => $product->id]);
+        $id_for_delete_link = route('product.destroy', ['id' => $product->id]);
         // dd($id_for_update_link);
+        // dd($id_for_delete_link);
         if ($product->product_image) {
             $url_image = Storage::url($product->image);
         } else {
@@ -116,7 +118,8 @@ class ProductController extends Controller
         return response()->json(['success' => compact(
             'product',
             'id_for_update_link',
-            'url_image'
+            'url_image',
+            'id_for_delete_link'
         )]);
         // return view('product::layouts.partials._modal_edit', compact('product'));
     }
