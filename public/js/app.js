@@ -1,5 +1,7 @@
 // console.log('ciao');
 
+
+//show  open modal and populate data
 const openModalBtns = document.querySelectorAll('.btm-show');
 const modal = new bootstrap.Modal('#modal', { backdrop: 'true' });
 
@@ -64,6 +66,8 @@ openModalBtns.forEach((btn) => {
     });
 });
 
+
+//edit for product open modal and populate form
 $(document).ready(function() {
   $('.edit-button').click(function(e) {
     e.preventDefault();
@@ -115,7 +119,7 @@ $(document).ready(function() {
 });
 
 
-
+// delete open modal and populate form
 $(document).ready(function() {
   $('.delete-button').click(function(e) {
     e.preventDefault();
@@ -152,7 +156,7 @@ $(document).ready(function() {
 });
 
 
-
+//force delete open modal and populate form
 $(document).ready(function() {
   $('.force-delete-button').click(function(e) {
     e.preventDefault();
@@ -190,10 +194,17 @@ $(document).ready(function() {
 });
 
 
-
-
+//allert for restore success
 $(document).ready(function(){
   setTimeout(function(){
     $("#allert-restore").fadeOut();
   }, 1500);
+});
+
+
+//show allert for error to sub more 
+$(document).ready(function(){
+  setTimeout(function(){
+    $("#allert-error-sub").fadeOut();
+  }, 2000);
 });

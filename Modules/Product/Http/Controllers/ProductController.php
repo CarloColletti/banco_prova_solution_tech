@@ -265,7 +265,7 @@ class ProductController extends Controller
 
         $product->restore();
 
-        return redirect()->route('product.index')->with('success', 'Il prodotto è stato ripristinato');;
+        return redirect()->route('product.index')->with('success', 'Il prodotto è stato ripristinato');
     }
 
 
