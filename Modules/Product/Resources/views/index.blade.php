@@ -36,7 +36,10 @@
                 @include('product::layouts.partials._card')
             </div>
         @empty
-            Non ci sono prodotti
+            <h2>
+
+                Non ci sono prodotti
+            </h2>
         @endforelse
     </div>
 @endsection
@@ -45,7 +48,6 @@
 
 @section('modal')
     @if ($resul_error_fix === 0)
-        asdasdasdasdasdasdsadsadasdadssadsaasdsdasdasdasdassdas
     @else
         {{-- modal for detail --}}
         @include('product::layouts.partials._modal_detail')

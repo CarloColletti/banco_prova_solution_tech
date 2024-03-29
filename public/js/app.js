@@ -99,7 +99,7 @@ $(document).ready(function() {
         console.log(product.product_image);
 
         if (product.product_image) {
-            $('#existing_product_image').attr('src', "http://127.0.0.1:8000/storage/public/" + product.product_image).show();
+            $('#existing_product_image').attr('src', "http://127.0.0.1:8000/storage/" + product.product_image).show();
             // $('#existing_product_image').attr('src', url_image).show();
         } else {
             $('#existing_product_image').hide();

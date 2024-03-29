@@ -66,11 +66,11 @@ class ProductController extends Controller
 
             // dd($request->product_image);
 
-            $path = Storage::put('public/product_image', $request->product_image);
+            $path = Storage::put('product_image', $request->product_image);
 
             // dd($path);
 
-            $image_path = str_replace('public/', '', $path);
+            $image_path = $path;
 
             // dd($image_path);
 
@@ -156,7 +156,7 @@ class ProductController extends Controller
                 Storage::delete($product->product_image);
             }
 
-            $path = Storage::put('public/product_image', $request->product_image);
+            $path = Storage::put('product_image', $request->product_image);
 
             // dd($product->product_image);
 
@@ -208,12 +208,6 @@ class ProductController extends Controller
         $user = Auth::id();
         $products = Product::where('creator_id', $user)->onlyTrashed()->get();
 
-        // dd($products);
-        if (isset($products->attributes)) {
-            dd('vuoto');
-            return redirect()->route('product.index')->with('success', 'Il cimitero è vuoto');
-        }
-
         $resul_error_fix = null;
 
         if (
@@ -252,7 +246,9 @@ class ProductController extends Controller
 
         // dd($product->product_image);
         if ($product->product_image) {
-            // dd("stai eliminando l'immagine");
+            // dd($product->product_image);
+
+            // dd(Storage::delete($product->product_image));
 
             Storage::delete($product->product_image);
         }
