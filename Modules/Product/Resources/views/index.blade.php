@@ -31,26 +31,33 @@
     </div>
 
     <div class="row">
-        @foreach ($products as $product)
+        @forelse ($products as $product)
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 g-4 d-flex justify-content-center">
                 @include('product::layouts.partials._card')
             </div>
-        @endforeach
+        @empty
+            Non ci sono prodotti
+        @endforelse
     </div>
 @endsection
 
 
 
 @section('modal')
-    {{-- modal for detail --}}
-    @include('product::layouts.partials._modal_detail')
+    @if ($resul_error_fix === 0)
+        asdasdasdasdasdasdsadsadasdadssadsaasdsdasdasdasdassdas
+    @else
+        {{-- modal for detail --}}
+        @include('product::layouts.partials._modal_detail')
+
+        {{-- modal for edit --}}
+        @include('product::layouts.partials._modal_edit')
+
+
+        {{-- modal for delete --}}
+        @include('product::layouts.partials._modal_delete')
+    @endif
 
     {{-- Modal for create --}}
     @include('product::layouts.partials._modal_create')
-
-    {{-- modal for edit --}}
-    @include('product::layouts.partials._modal_edit')
-
-    {{-- modal for delete --}}
-    @include('product::layouts.partials._modal_delete')
 @endsection

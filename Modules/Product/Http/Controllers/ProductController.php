@@ -27,7 +27,15 @@ class ProductController extends Controller
             $user
         )->onlyTrashed()->get()->count();
 
-        return view('product::index', compact('products', 'numberDead'));
+        $resul_error_fix = null;
+
+        if ($products->count() === 0) {
+            $resul_error_fix = 0;
+        }
+
+        // dd($products);
+
+        return view('product::index', compact('products', 'numberDead', 'resul_error_fix'));
     }
 
     /**
@@ -188,6 +196,7 @@ class ProductController extends Controller
 
         $product->delete();
 
+
         return redirect()->route('product.index');
     }
 
@@ -200,13 +209,22 @@ class ProductController extends Controller
         $products = Product::where('creator_id', $user)->onlyTrashed()->get();
 
         // dd($products);
-        if (empty($products->items)) {
+        if (isset($products->attributes)) {
+            dd('vuoto');
             return redirect()->route('product.index')->with('success', 'Il cimitero è vuoto');
+        }
+
+        $resul_error_fix = null;
+
+        if (
+            $products->count() === 0
+        ) {
+            $resul_error_fix = 0;
         }
 
         // dd($users);
 
-        return view('product::trash', compact('products'));
+        return view('product::trash', compact('products', 'resul_error_fix'));
     }
 
     public function returnIdForForceDelete($id)
@@ -232,9 +250,11 @@ class ProductController extends Controller
             return abort(403);
         }
 
-        if ($product->product_photo) {
+        // dd($product->product_image);
+        if ($product->product_image) {
+            // dd("stai eliminando l'immagine");
 
-            Storage::delete($product->product_photo);
+            Storage::delete($product->product_image);
         }
 
         $product->forceDelete();
