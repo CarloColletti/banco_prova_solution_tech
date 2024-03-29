@@ -30,3 +30,8 @@ Route::prefix('product')->group(function () {
     Route::delete('/product/{id}/force-delete', 'ProductController@force_delete')->name('product.force_delete');
     Route::get('product/{id}/returnIdForForceDelete', 'ProductController@returnIdForForceDelete')->name('product.return_id_force_delete');
 });
+
+Route::prefix('quantity_edit')->group(function () {
+    Route::get('/{id}/edit', 'MagazineController@edit')->name('product_magazine.edit');
+    Route::delete('/{id}/update', 'MagazineController@update')->name('product_magazine.update');
+});

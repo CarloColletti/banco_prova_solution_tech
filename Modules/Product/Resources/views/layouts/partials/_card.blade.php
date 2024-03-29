@@ -26,6 +26,10 @@
                      <i class="fa-regular fa-pen-to-square"></i>
                  </button>
              </div>
+             <div>
+                 <a href="{{ Route('product_magazine.edit', ['id' => $product->id]) }}">
+                     <i class="fa-solid fa-plus"></i></a>
+             </div>
          @else
              <form action="{{ route('product.restore', ['id' => $product->id]) }}" method="POST"
                  class="px-2 text-danger">
