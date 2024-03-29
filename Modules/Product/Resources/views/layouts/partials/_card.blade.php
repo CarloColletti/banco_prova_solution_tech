@@ -18,19 +18,27 @@
              data-product-image="{{ $product->product_image }}">
              <i class="fa-regular fa-eye"></i>
          </button>
-         <div>
-             <button type="button" class="btn edit-button text-success p-0 m-0" data-id="{{ $product->id }}"
-                 data-bs-toggle="modal" data-bs-target="#editModal">
-                 <i class="fa-regular fa-pen-to-square"></i>
-             </button>
 
+         @if ($product->deleted_at === null)
+             <div>
+                 <button type="button" class="btn edit-button text-success p-0 m-0" data-id="{{ $product->id }}"
+                     data-bs-toggle="modal" data-bs-target="#editModal">
+                     <i class="fa-regular fa-pen-to-square"></i>
+                 </button>
+             </div>
+         @endif
 
-         </div>
-         <div>
+         @if ($product->deleted_at === null)
              <button type="button" class="btn delete-button text-danger p-0 m-0" data-id="{{ $product->id }}"
                  data-bs-toggle="modal" data-bs-target="#deleteModal">
                  <i class="fa-regular fa-trash-can"></i>
              </button>
-         </div>
+         @else
+             <button type="button" class="btn force-delete-button text-danger p-0 m-0" data-id="{{ $product->id }}"
+                 data-bs-toggle="modal" data-bs-target="#forceDeleteModal">
+                 <i class="fa-regular fa-trash-can"></i>
+             </button>
+         @endif
+
      </div>
  </div>

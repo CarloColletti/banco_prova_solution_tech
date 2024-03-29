@@ -5,6 +5,13 @@
 @endsection
 
 @section('content')
+    @if (\Session::has('success'))
+        <div class="alert alert-danger">
+            <ul>
+                <li>{!! \Session::get('success') !!}</li>
+            </ul>
+        </div>
+    @endif
     <div class=" d-flex flex-row  justify-content-between pb-4">
         <div>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createProduct">
@@ -16,7 +23,7 @@
         {{-- link to product trashcan  --}}
         <a href="{{ route('product.trash') }}">
             <span class="btn btn-danger">
-                cimitero {{-- {{ $numberDead > 0 ? $numberDead : '' }} --}}
+                cimitero {{ $numberDead > 0 ? $numberDead : '' }}
             </span>
         </a>
 

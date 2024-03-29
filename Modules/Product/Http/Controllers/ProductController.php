@@ -22,10 +22,12 @@ class ProductController extends Controller
         $user = Auth::id();
         $products = Product::where('creator_id', $user)->get();
         // $products = Product::all();
-        // $numberDead = Product::where('creator_id', $user)->get()->onlyTrashed()->count();
-        // $numberDead = Product::withTrashed()->where('creator_id', $user)->count('id');
+        $numberDead = Product::where(
+            'creator_id',
+            $user
+        )->onlyTrashed()->get()->count();
 
-        return view('product::index', compact('products'));
+        return view('product::index', compact('products', 'numberDead'));
     }
 
     /**
@@ -99,8 +101,10 @@ class ProductController extends Controller
     {
 
         $product = Product::findOrFail($id);
+
         $id_for_update_link = route('product.update', ['id' => $product->id]);
         $id_for_delete_link = route('product.destroy', ['id' => $product->id]);
+
         // dd($id_for_update_link);
         // dd($id_for_delete_link);
         if ($product->product_image) {
@@ -109,17 +113,12 @@ class ProductController extends Controller
             $url_image = null;
         }
 
-
-
-
-
         // dd($product);
-        // 'id_for_update_link', 'url_image'
         return response()->json(['success' => compact(
             'product',
             'id_for_update_link',
             'url_image',
-            'id_for_delete_link'
+            'id_for_delete_link',
         )]);
         // return view('product::layouts.partials._modal_edit', compact('product'));
     }
@@ -136,7 +135,7 @@ class ProductController extends Controller
 
         // dd($request->all());
 
-        // $this->validation($form_data);
+        $this->validation($form_data);
 
         $product = Product::findOrFail($id);
 
@@ -178,19 +177,47 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Product $product, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+
+        if ($product->creator_id != auth()->user()->id) {
+            return abort(403);
+        }
+
+        $product->delete();
+
+        return redirect()->route('product.index');
     }
 
 
     public function trash()
     {
-        $products = Product::onlyTrashed()->get();
+        // $products = Product::onlyTrashed()->get();
+
+        $user = Auth::id();
+        $products = Product::where('creator_id', $user)->onlyTrashed()->get();
+
+        // dd($products);
+        if (empty($products->items)) {
+            return redirect()->route('product.index')->with('success', 'Il cimitero è vuoto');
+        }
 
         // dd($users);
 
         return view('product::trash', compact('products'));
+    }
+
+    public function returnIdForForceDelete($id)
+    {
+
+        $id_for_force_delete_link = route('product.force_delete', ['id' => $id]);
+        // dd($id_for_force_delete_link);
+
+        return response()->json(['success' => compact(
+            'id_for_force_delete_link'
+        )]);
     }
 
 
@@ -199,13 +226,20 @@ class ProductController extends Controller
         // query lunga per risolvere il problema della dipendence injection 
         $product = Product::where('id', $id)->onlyTrashed()->first();
 
-        // if ($user->id === auth()->user()->id) {
-        //     return abort(403);
-        // }
+        $user = Auth::id();
+
+        if ($user != auth()->user()->id) {
+            return abort(403);
+        }
+
+        if ($product->product_photo) {
+
+            Storage::delete($product->product_photo);
+        }
 
         $product->forceDelete();
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.trash');
     }
 
     public function restore(Int $id)

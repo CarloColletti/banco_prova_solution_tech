@@ -138,7 +138,7 @@ $(document).ready(function() {
 
         //precompila i dati nel form
         const textDeleteModal = document.querySelector('#delete_name_modal');
-        textDeleteModal.textContent = 'Stai per eliminare il prodotto'+ product.name;
+        textDeleteModal.textContent = 'Stai per eliminare il prodotto: '+ product.name;
         $('#form_delete_product').attr('action', id_for_delete_link)
 
 
@@ -150,6 +150,45 @@ $(document).ready(function() {
   });
   
 });
+
+
+
+$(document).ready(function() {
+  $('.force-delete-button').click(function(e) {
+    e.preventDefault();
+
+    let id = $(this).data('id');
+
+    console.log(id);
+
+    $.ajax({
+      url: ''+id+'/returnIdForForceDelete',
+      method: 'GET',
+      success: function(data) {
+        console.log(data);
+        // console.log(data.success.product.name);
+
+        // assegna a product l'array dei dati da modificare
+          
+        let id_for_force_delete_link = data.success.id_for_force_delete_link;
+
+        console.log(id_for_force_delete_link);
+        // console.log(product.name);
+
+        //precompila i dati nel form
+
+        $('#form_force_delete_product').attr('action', id_for_force_delete_link)
+
+
+
+        // Mostra la modale
+        $('#forceDeleteModal').modal('show');
+      }
+    });
+  });
+  
+});
+
 
 
 
