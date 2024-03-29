@@ -26,6 +26,13 @@
                      <i class="fa-regular fa-pen-to-square"></i>
                  </button>
              </div>
+         @else
+             <form action="{{ route('product.restore', ['id' => $product->id]) }}" method="POST"
+                 class="px-2 text-danger">
+                 @csrf
+                 @method('post')
+                 <button type="submit" class="btn p-0 m-0 text-success"><i class="fa-solid fa-recycle"></i></button>
+             </form>
          @endif
 
          @if ($product->deleted_at === null)

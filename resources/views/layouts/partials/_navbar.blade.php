@@ -11,7 +11,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="nav-item me-auto w-100 px-5 ">
-                <form class="d-flex lg-px-5">
+                {{-- <form class="d-flex lg-px-5">
                     <input class="form-control me-2" type="text" name="term" placeholder="Cerca tra gli utenti"
                         aria-label="Search">
                     <button class="bn54" type="submit">
@@ -19,7 +19,7 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
                     </button>
-                </form>
+                </form> --}}
             </div>
 
             <!-- Right Side Of Navbar -->

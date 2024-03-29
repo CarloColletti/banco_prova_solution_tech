@@ -192,3 +192,8 @@ $(document).ready(function() {
 
 
 
+$(document).ready(function(){
+  setTimeout(function(){
+    $("#allert-restore").fadeOut();
+  }, 1500);
+});

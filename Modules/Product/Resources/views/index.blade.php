@@ -6,7 +6,7 @@
 
 @section('content')
     @if (\Session::has('success'))
-        <div class="alert alert-danger">
+        <div id="allert-restore" class="alert alert-success">
             <ul>
                 <li>{!! \Session::get('success') !!}</li>
             </ul>

@@ -26,7 +26,7 @@ Route::prefix('product')->group(function () {
     Route::delete('/{id}', 'ProductController@destroy')->name('product.destroy');
     Route::get('/{id}/edit', 'ProductController@edit')->name('product.edit');
     Route::get('/product/trash', 'ProductController@trash')->name('product.trash');
-    Route::post('/product/{product}/restore', 'ProductController@restore')->name('product.restore');
+    Route::post('/product/{id}/restore', 'ProductController@restore')->name('product.restore');
     Route::delete('/product/{id}/force-delete', 'ProductController@force_delete')->name('product.force_delete');
     Route::get('product/{id}/returnIdForForceDelete', 'ProductController@returnIdForForceDelete')->name('product.return_id_force_delete');
 });

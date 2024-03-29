@@ -261,11 +261,11 @@ class ProductController extends Controller
     public function restore(Int $id)
     {
         // query lunga per risolvere il problema della dipendence injection 
-        // $user = User::where('id', $id)->onlyTrashed()->first();
+        $product = Product::where('id', $id)->onlyTrashed()->first();
 
-        // $user->restore();
+        $product->restore();
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Il prodotto è stato ripristinato');;
     }
 
 
