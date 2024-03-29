@@ -12,7 +12,6 @@ class Magazine extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
         'stock_quntity',
         'quantity_product_add_or_sub',
         'action_used'

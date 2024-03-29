@@ -33,5 +33,5 @@ Route::prefix('product')->group(function () {
 
 Route::prefix('quantity_edit')->group(function () {
     Route::get('/{id}/edit', 'MagazineController@edit')->name('product_magazine.edit');
-    Route::delete('/{id}/update', 'MagazineController@update')->name('product_magazine.update');
+    Route::match(['put', 'patch'], '/{id}/update', 'MagazineController@update')->name('product_magazine.update');
 });

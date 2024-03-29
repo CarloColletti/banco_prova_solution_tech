@@ -5,7 +5,7 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use Modules\Product\Entities\Product;
 
 class MagazineController extends Controller
 {
@@ -54,7 +54,9 @@ class MagazineController extends Controller
      */
     public function edit($id)
     {
-        return view('product::product_quantity_edit');
+        $product = Product::where('id', $id)->first();
+        // dd($product->name);
+        return view('product::product_quantity_edit', compact('product'));
     }
 
     /**
@@ -65,7 +67,10 @@ class MagazineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $formdata = $request->all();
+        // dd($formdata);
+
+        da fare tutta la logica
     }
 
     /**
