@@ -3,7 +3,7 @@
 namespace Modules\Product\Entities;
 
 use App\Models\User;
-use App\Modules\Product\Entities\Magazine;
+use Modules\Product\Entities\Magazine;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

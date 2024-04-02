@@ -1,7 +1,7 @@
 @extends('orders::layouts.master')
 
 @section('title')
-    User
+    Shop
 @endsection
 
 @section('content')

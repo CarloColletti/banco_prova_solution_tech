@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('note');
-            $table->foreignId('creator_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('customer_id')->references('id')->on('users')->cascadeOnDelete();
             $table->decimal('discount', 4, 2);
             $table->string('discount_type');

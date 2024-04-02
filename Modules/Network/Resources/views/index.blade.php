@@ -8,11 +8,19 @@
     {{-- link for turn back at origin home --}}
     <div class=" d-flex flex-row  justify-content-between pb-4">
         {{-- link for turn back at origin home --}}
-        <a href="{{ route('home') }}">
-            <span class="btn btn-success">
-                esci fuori dalla zona del network
-            </span>
-        </a>
+        <div>
+            <a href="{{ route('home') }}">
+                <span class="btn btn-success">
+                    esci fuori dalla zona del network
+                </span>
+            </a>
+            <a href="{{ route('order.index') }}">
+                <span class="btn btn-success">
+                    Vai allo Shop
+                </span>
+            </a>
+        </div>
+
 
         {{-- link to user trashcan  --}}
         <a href="{{ route('network.trash') }}">

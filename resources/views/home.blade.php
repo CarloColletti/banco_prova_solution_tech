@@ -6,21 +6,30 @@
 
 
 @section('content')
-    {{-- link for network session --}}
-    <div class="row">
-        <div class="col py-4">
-            <a href="{{ route('network.index') }}">
-                <span class="btn btn-success">
-                    divertiti nel network
-                </span>
-            </a>
-        </div>
-    </div>
     {{-- init table  --}}
     <table class="table table-striped">
         @guest
             <h1>ACCEDI O REGISTRATI PER VISUALIZZARE GLI UTENTI</h1>
         @else
+            {{-- link for network session --}}
+            <div class="row">
+                <div class="col py-4">
+                    <a href="{{ route('network.index') }}">
+                        <span class="btn btn-success">
+                            divertiti nel network
+                        </span>
+                    </a>
+                </div>
+                <div class="col py-4">
+                    <a href="{{ route('order.index') }}">
+                        <span class="btn btn-success">
+                            Vai allo Shop
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            {{-- table init  --}}
             <thead>
                 <tr>
                     <th>ID Utente</th>
