@@ -103,9 +103,6 @@ class MagazineController extends Controller
             $product->stock_quntity -= $request->quantity_product_add_or_sub;
 
             $save_product_quantity_magazine = $product->stock_quntity;
-
-            // da implementare regola che se mette un valore troppo alto che porta in negativo 
-
             // dd($product->stock_quntity);
 
             $product->save();
