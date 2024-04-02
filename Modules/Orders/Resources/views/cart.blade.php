@@ -1,7 +1,7 @@
 @extends('orders::layouts.master')
 
 @section('title')
-    Shop
+    Order
 @endsection
 
 @section('content')
@@ -21,8 +21,8 @@
     <div class="fixed-bottom">
         <div class="d-flex flex-row-reverse border-top border-secondary">
             <div class="p-4">
-                <button class="btn btn-secondary" id="btn-add-cart">
-                    Aggiungi al carello
+                <button class="btn btn-secondary" id="btn-send-order">
+                    Compera
                 </button>
             </div>
         </div>

@@ -25,12 +25,13 @@
 
 
 
+
 </head>
 
 <body>
 
     @include('layouts.partials._navbar')
-    <main class="py-5 container">
+    <main class="py-5 mb-5 container">
         @yield('content')
     </main>
 
@@ -43,6 +44,7 @@
     </script>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
 </body>
 
 </html>

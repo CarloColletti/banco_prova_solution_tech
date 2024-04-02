@@ -5,6 +5,7 @@ namespace Modules\Orders\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\Product;
 
 class OrdersController extends Controller
 {
@@ -14,7 +15,8 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        return view('orders::index');
+        $products = Product::all();
+        return view('orders::index', compact('products'));
     }
 
     /**
