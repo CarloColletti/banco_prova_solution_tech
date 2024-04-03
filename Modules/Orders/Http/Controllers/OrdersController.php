@@ -19,6 +19,23 @@ class OrdersController extends Controller
         return view('orders::index', compact('products'));
     }
 
+    public function order_create(Request $request)
+    {
+        // $product = $request->all();
+        // dd($product);
+
+        $ids = $request->input('ids');
+
+        $products = Product::whereIn('id', $ids)->get();
+
+        // dd($products);
+
+
+        return view('orders::cart')->with('products', $products);
+        // return redirect()->route('order.cart', ['products' => $products]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Renderable
@@ -53,7 +70,7 @@ class OrdersController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit()
     {
         return view('orders::edit');
     }
