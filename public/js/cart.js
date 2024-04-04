@@ -20,3 +20,14 @@ checkboxes.forEach(checkbox => {
   checkbox.checked = false;
 });
 
+
+
+const quantity = document.querySelectorAll('.input-num-up').getAttribute('value');
+console.log(quantity);
+document.querySelectorAll('row-for-select-data').forEach(card => {
+  card.addEventListener('click', () => {
+    
+
+  });
+});
+

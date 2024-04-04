@@ -44,12 +44,25 @@
 
         {{-- SECTION FOR CREATE ORDER  --}}
         <div class="col-2 border-start border-secondary">
-            <div class="d-flex flex-row-reverse">
-                <div class="p-3">
-                    <button class="btn btn-secondary" id="btn-send-order">
-                        Compera
-                    </button>
-                </div>
+            <div class="d-flex flex-column gap-3">
+                {{-- select a type discount  --}}
+                <label for="discount_type">Seleziona il tipo di sconto:</label>
+                <select name="discount_type" id="discount_type">
+                    <option value="fisso">Fisso</option>
+                    <option value="percentuale">Percentuale</option>
+                </select>
+
+                {{-- insert value of discount  --}}
+                <label for="discount"></label>
+                <input type="number" step=".01" id="discount" value="discount">
+
+                {{-- total amount --}}
+                <label for="total_amount">12€</label>
+                <input type="hidden" id="total_amount" class="total_amount_selector">
+
+                <button class="btn btn-secondary" id="btn-send-order">
+                    Compera
+                </button>
             </div>
         </div>
         </form>

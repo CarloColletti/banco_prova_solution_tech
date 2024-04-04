@@ -10,7 +10,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
- input[type='number'] {
+input[type='number'] {
   width: 2rem;
   margin: 0;
   padding: 0;
