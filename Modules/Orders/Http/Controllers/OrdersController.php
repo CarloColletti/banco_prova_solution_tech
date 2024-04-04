@@ -31,7 +31,14 @@ class OrdersController extends Controller
         // dd($products);
 
 
-        return view('orders::cart')->with('products', $products);
+        $redirectUrl = route('order.cart'); // Sostituisci con l'URL di destinazione desiderato
+        // return response()->json([
+        //     'success' => true,
+        //     'redirectUrl' => $redirectUrl
+        // ]);
+
+        return view('orders::cart', compact('products'));
+        // return view('orders::cart')->with('products', $products);
         // return redirect()->route('order.cart', ['products' => $products]);
 
     }
