@@ -5,6 +5,7 @@ namespace Modules\Orders\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Session;
 use Modules\Product\Entities\Product;
 
 class OrdersController extends Controller
@@ -21,26 +22,14 @@ class OrdersController extends Controller
 
     public function order_create(Request $request)
     {
-        // $product = $request->all();
-        // dd($product);
 
-        $ids = $request->input('ids');
+        $selectedProducts = Session::get('selectedProducts');
 
-        $products = Product::whereIn('id', $ids)->get();
+        $products = Product::whereIn('id', $selectedProducts)->get();
 
-        // dd($products);
-
-
-        $redirectUrl = route('order.cart'); // Sostituisci con l'URL di destinazione desiderato
-        // return response()->json([
-        //     'success' => true,
-        //     'redirectUrl' => $redirectUrl
-        // ]);
+        dd($products);
 
         return view('orders::cart', compact('products'));
-        // return view('orders::cart')->with('products', $products);
-        // return redirect()->route('order.cart', ['products' => $products]);
-
     }
 
     /**
@@ -59,7 +48,13 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $selectedProducts = $request->input('products');
+
+        // dd($selectedProducts);
+
+        Session::put('selectedProducts', $selectedProducts);
+
+        return redirect('order/order_create');
     }
 
     /**

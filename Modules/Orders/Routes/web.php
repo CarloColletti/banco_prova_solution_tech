@@ -22,8 +22,8 @@ Route::prefix('order')->group(function () {
     Route::get('/', 'OrdersController@index')->name('order.index');
     Route::get('/order_create', 'OrdersController@order_create')->name('order.cart');
     Route::post('/', 'OrdersController@store')->name('order.store');
-    // Route::get('/create', 'OrdersController@create')->name('order.create');
     // Route::get('/{order}', 'OrdersController@show')->name('order.show');
+    // Route::get('/create', 'OrdersController@create')->name('order.create');
     // Route::match(['put', 'patch'], '/{user}', 'OrdersController@update')->name('order.update');
     // Route::delete('/{order}', 'OrdersController@destroy')->name('order.destroy');
     // Route::get('/{ids}/edit', 'OrdersController@edit')->name('order.edit');
