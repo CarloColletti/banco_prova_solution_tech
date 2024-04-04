@@ -5,30 +5,56 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('order.store') }}" method="post">
-        @csrf
-        <div class="row">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 g-4 d-flex justify-content-center">
-                {{-- @include('orders::layouts.partials._list_product') --}}
-            </div>
+    <div class="row flex-row">
+        {{-- SECTION FOR PRODUCT **************************************************  --}}
+        <div class="col-10">
+            {{-- FORM  --}}
+            <form action="{{ route('order.index') }}" method="post">
+                <div class="container">
+                    <div class="row">
+                        {{-- INIT TABLE --}}
+                        <div class="row border-bottom border-3 border-black text-center py-3 fw-semibold ">
+                            <div class="col-2">#</div>
+                            <div class="col-1">Nome</div>
+                            <div class="col-2">Tipologia</div>
+                            <div class="col-1">Peso</div>
+                            <div class="col-1">Altezza</div>
+                            <div class="col-1">Larghezza</div>
+                            <div class="col-1">Profonditò</div>
+                            <div class="col-2">Quantità</div>
+                            <div class="col-1">Prezzo</div>
+                        </div>
 
+                        {{-- FORM  --}}
+                        <form action="{{ route('order.index') }}" method="post">
+                            @csrf
+                            @forelse ($products as $product)
+                                @include('orders::layouts.partials._list_product')
+                            @empty
+                                <h2>
+                                    Non ci soo prodotti nel carrello.
+                                </h2>
+                            @endforelse
+
+                        </form>
+                    </div>
+                </div>
+            </form>
         </div>
 
-
-        <div class="fixed-bottom">
-            <div class="d-flex flex-row-reverse border-top border-secondary">
-                <div class="p-4">
+        {{-- SECTION FOR CREATE ORDER  --}}
+        <div class="col-2 border-start border-secondary">
+            <div class="d-flex flex-row-reverse">
+                <div class="p-3">
                     <button class="btn btn-secondary" id="btn-send-order">
                         Compera
                     </button>
                 </div>
             </div>
         </div>
-
-    </form>
+        </form>
+    </div>
 @endsection
-
-
 
 @section('modal')
 @endsection

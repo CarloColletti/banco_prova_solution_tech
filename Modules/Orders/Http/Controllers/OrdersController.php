@@ -27,7 +27,7 @@ class OrdersController extends Controller
 
         $products = Product::whereIn('id', $selectedProducts)->get();
 
-        dd($products);
+        // dd($products);
 
         return view('orders::cart', compact('products'));
     }
