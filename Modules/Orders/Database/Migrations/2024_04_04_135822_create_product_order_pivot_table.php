@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_order_pivot', function (Blueprint $table) {
+        Schema::create('product_order_pivot', function (Blueprint $table) {
+            $table->id();
 
-
-            $table->foreignId('creator_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('order_id')->references('id')->on('orders')->cascadeOnDelete();
+            $table->foreignId('product_id')->references('id')->on('products')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_order_pivot');
+        Schema::dropIfExists('product_order_pivot');
     }
 };

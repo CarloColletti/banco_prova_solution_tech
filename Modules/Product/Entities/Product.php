@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Orders\Entities\Orders;
 
 class Product extends Model
 {
@@ -32,5 +33,10 @@ class Product extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(Magazine::class);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Orders::class);
     }
 }

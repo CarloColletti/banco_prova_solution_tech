@@ -2,9 +2,10 @@
 
 namespace Modules\Orders\Entities;
 
-use App\Models\User;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Product\Entities\Product;
 
 class Orders extends Model
 {
@@ -14,6 +15,6 @@ class Orders extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Product::class);
     }
 }
