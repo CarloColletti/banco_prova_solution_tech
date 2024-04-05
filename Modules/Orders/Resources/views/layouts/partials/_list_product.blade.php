@@ -28,7 +28,7 @@
 
     {{-- PRICE  --}}
     <div class="col-1">
-        <span id="price-for-total-amount">
+        <span class="price-for-total-amount">
             {{ $product->price }}
         </span>
     </div>

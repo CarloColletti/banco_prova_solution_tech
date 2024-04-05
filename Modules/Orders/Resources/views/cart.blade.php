@@ -57,7 +57,7 @@
                 <input type="number" step=".01" id="discount" value="discount">
 
                 {{-- total amount --}}
-                <label for="total_amount">12€</label>
+                <label for="total_amount"></label>
                 <input type="hidden" id="total_amount" class="total_amount_selector">
 
                 <button class="btn btn-secondary" id="btn-send-order">
