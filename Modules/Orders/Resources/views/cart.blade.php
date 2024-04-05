@@ -49,10 +49,12 @@
                     </select>
 
                     {{-- insert value of discount  --}}
-                    <label for="discount">inserisci quantoo vuoi scontare dal totale</label>
-                    <div>
-                        <input type="number" step=".01" name="discount" id="discount" value="discount">
-                        <span class="btn btn-secondary" id="creasy-deal">Sconto Pazzo</span>
+                    <div class="change-visibility">
+                        <label for="discount">inserisci quantoo vuoi scontare dal totale</label>
+                        <div>
+                            <input type="number" step=".01" name="discount" id="discount" value="discount">
+                            <span class="btn btn-secondary" id="creasy-deal">Sconto Pazzo</span>
+                        </div>
                     </div>
 
                     {{-- total amount --}}

@@ -30,6 +30,7 @@ document.querySelectorAll('.card-for-cart').forEach(card => {
   
 
   const valueOfImput = document.querySelectorAll('input[type="number"]');
+  let totalPriceElement;
 
   valueOfImput.forEach(input => {
   input.value = 1;
@@ -47,6 +48,7 @@ document.querySelectorAll('.card-for-cart').forEach(card => {
  */
 const products = document.querySelectorAll(".row-for-select-data");
 
+
 let quantity= [];
 
 for (const product of products) {
@@ -55,9 +57,11 @@ for (const product of products) {
   const increaseButton = product.querySelector(".btn-plus");
 
   increaseButton.addEventListener("click", () => {
-    // console.log(quantityInput.value);
-    if(quantityInput.value < maxValue.max){
+    // console.log(maxValue.max);
+    if(parseInt(quantityInput.value) < maxValue.max){
       quantityInput.value = parseInt(quantityInput.value) + 1;
+      console.log(maxValue.max);
+      console.log(quantityInput.value);
     }
     showUpgradePrice();
   });
@@ -86,7 +90,7 @@ function showUpgradePrice() {
 
   let quantity_single = document.querySelectorAll('.input-num-up');
   // console.log(quantity_single);
-  let totalPriceElement = document.querySelector('.total_amount_show');
+  totalPriceElement = document.querySelector('.total_amount_show');
 
   let quantity_single_total = [];
   total = 0;
@@ -122,5 +126,43 @@ function showUpgradePrice() {
 /*
   function for create a discount and applicate at total
 */
+
+
+document.querySelector('#creasy-deal').addEventListener('click', () => {
+  const valueToSub = document.querySelector('#discount').value;
+  let valueToTotal = document.querySelector('#total_amount').value;
+  const typeDiscount = document.querySelector('#discount_type').value;
+  let valueToDiscount;
+  // console.log(typeDiscount);
+  // typeDiscount.value.includes("fisso")
+  // if(typeDiscount.value == "fisso"){
+  if(typeDiscount == "fisso"){
+
+    if(valueToSub>valueToTotal){
+      valueToTotal -= valueToSub;
+      valueToTotal = valueToTotal.toFixed(2);
+      totalPriceElement.textContent = valueToTotal;
+    }else{
+      return
+    } 
+  }else{
+    if(valueToSub>100){
+      // console.log('troppo');
+      return
+    }else{
+      // console.log('ok');
+      
+      valueToDiscount = (valueToTotal * valueToSub) / 100;
+      valueToTotal = valueToTotal - valueToDiscount;
+
+      valueToTotal = valueToTotal.toFixed(2);
+      totalPriceElement.textContent = valueToTotal;
+    } 
+  }
+});
+
+
+
+
 
 
