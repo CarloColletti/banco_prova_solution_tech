@@ -22,8 +22,8 @@
     {{-- QUANTITY AND BUTTONS --}}
     <div class="col-2">
         <input type="number" value="1" max="{{ $product->stock_quntity }}" min="1" class="input-num-up">
-        <span class="btn text-success" id="btn-plus">+</span>
-        <span class="btn text-danger" id="btn-min">-</span>
+        <span class="btn text-success btn-plus">+</span>
+        <span class="btn text-danger btn-min">-</span>
     </div>
 
     {{-- PRICE  --}}
