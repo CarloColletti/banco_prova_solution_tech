@@ -1,4 +1,13 @@
-// ******************************************************************
+/*
+  function for select a product for send to controller
+*/
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+checkboxes.forEach(checkbox => {
+  checkbox.checked = false;
+});
+
+
 const productCards = document.querySelectorAll('#card-for-cart');
 
 document.querySelectorAll('.card-for-cart').forEach(card => {
@@ -14,52 +23,43 @@ document.querySelectorAll('.card-for-cart').forEach(card => {
   });
 });
 
-const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-checkboxes.forEach(checkbox => {
-  checkbox.checked = false;
-});
-// ******************************************************************
+/*
+  function for reset value on reload page
+ */
+  
 
+  const valueOfImput = document.querySelectorAll('input[type="number"]');
 
+  valueOfImput.forEach(input => {
+  input.value = 1;
 
-
-
-
-// ******************************************************************
-const priceElements = document.querySelectorAll('.price-for-total-amount');
-let total = 0;
-
-// console.log(priceElements);
-
-for (const priceElement of priceElements) {
-  const price = parseFloat(priceElement.textContent);
-  // console.log(price);
-  total += price;
-}
-
-let totalPriceElement = document.querySelector('.total_amount_show');
-
-// console.log(totalPriceElement);
-
-// console.log(total)
-totalPriceElement.textContent = total;
+  showUpgradePrice();
+  });
 
 
-/********* */
 
 
+/*
+  function for add and reduce product quantity and upgrade the price
+
+  you can add and reduce in the limit of product
+ */
 const products = document.querySelectorAll(".row-for-select-data");
 
 let quantity= [];
 
 for (const product of products) {
   const quantityInput = product.querySelector("input[type='number']");
+  const maxValue = product.querySelector("input[type='number']");
   const increaseButton = product.querySelector(".btn-plus");
 
   increaseButton.addEventListener("click", () => {
-    quantityInput.value = parseInt(quantityInput.value) + 1;
-    miafunzione();
+    // console.log(quantityInput.value);
+    if(quantityInput.value < maxValue.max){
+      quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+    showUpgradePrice();
   });
 }
 
@@ -70,26 +70,23 @@ for (const product of products) {
   decrease.addEventListener("click", () => {
     quantityInput.value = parseInt(quantityInput.value) - 1;
     quantityInput.value = Math.max(quantityInput.value, 1);
-    miafunzione();
+    showUpgradePrice();
   });
 }
 
 
 
+/*
+  my function for Upgrade the total price
+*/
 
-
-
-
-/******** */
-
-
-
-function miafunzione() {
+function showUpgradePrice() {
   const priceElements = document.querySelectorAll('.price-for-total-amount');
   // console.log(priceElements);
 
   let quantity_single = document.querySelectorAll('.input-num-up');
-  console.log(quantity_single);
+  // console.log(quantity_single);
+  let totalPriceElement = document.querySelector('.total_amount_show');
 
   let quantity_single_total = [];
   total = 0;
@@ -114,11 +111,16 @@ function miafunzione() {
 
   total = total.toFixed(2);
 
+  const inserTotal = document.querySelector(".total_amount_selector");
+  inserTotal.value = total;
 
-  return totalPriceElement.textContent = total;;
+
+  return totalPriceElement.textContent = total;
 }
 
 
+/*
+  function for create a discount and applicate at total
+*/
 
 
-// ******************************************************************

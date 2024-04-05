@@ -36,8 +36,10 @@ class OrdersController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
+    public function create(Request $request)
     {
+        $order = $request->all();
+        dd($order);
         return view('orders::create');
     }
 

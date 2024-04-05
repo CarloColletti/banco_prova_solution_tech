@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-    <div class="row flex-row">
-        {{-- SECTION FOR PRODUCT **************************************************  --}}
-        <form action="{{ route('order.create') }}" method="post">
+    <form action="{{ route('order.create') }}" method="post">
+        <div class="row flex-row">
+            {{-- SECTION FOR PRODUCT **************************************************  --}}
             <div class="col-10">
                 {{-- FORM  --}}
                 @csrf
@@ -49,20 +49,28 @@
                     </select>
 
                     {{-- insert value of discount  --}}
-                    <label for="discount"></label>
-                    <input type="number" step=".01" id="discount" value="discount">
+                    <label for="discount">inserisci quantoo vuoi scontare dal totale</label>
+                    <div>
+                        <input type="number" step=".01" name="discount" id="discount" value="discount">
+                        <span class="btn btn-secondary" id="creasy-deal">Sconto Pazzo</span>
+                    </div>
 
                     {{-- total amount --}}
-                    <span class="total_amount_show"></span>
-                    <input type="hidden" id="total_amount" class="total_amount_selector">
+                    <div>
+                        <span>
+                            Il prezzo da pagare è:
+                        </span>
+                    </div>
+                    <span class="total_amount_show" name="total_amount"></span>
+                    <input type="hidden" name="total_amount" id="total_amount" class="total_amount_selector">
 
                     <button class="btn btn-secondary" id="btn-send-order">
                         Compera
                     </button>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 @endsection
 
 @section('modal')
