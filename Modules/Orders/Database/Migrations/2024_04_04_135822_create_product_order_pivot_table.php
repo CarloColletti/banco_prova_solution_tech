@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_order_pivot', function (Blueprint $table) {
+        Schema::create('orders_product', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('order_id')->references('id')->on('orders')->cascadeOnDelete();
+            $table->foreignId('orders_id')->references('id')->on('orders')->cascadeOnDelete();
             $table->foreignId('product_id')->references('id')->on('products')->cascadeOnDelete();
-            $table->integer('quantity_product');
 
             $table->timestamps();
         });

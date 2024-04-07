@@ -46,6 +46,7 @@
                             <a class="dropdown-item" href="{{ route('home') }}">Homepage</a>
                             <a class="dropdown-item" href="{{ route('product.index') }}">Miei Prodotti</a>
                             <a class="dropdown-item" href="{{ route('order.index') }}">Shop</a>
+                            <a class="dropdown-item" href="{{ route('order.show') }}">I tuoi ordini</a>
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

@@ -78,7 +78,49 @@ for (const product of products) {
   });
 }
 
+/*
+  function for create a discount and applicate at total
+*/
 
+
+document.querySelector('#creasy-deal').addEventListener('click', () => {
+  const valueToSub = document.querySelector('#discount').value;
+  let valueToTotal = document.querySelector('#total_amount').value;
+  const typeDiscount = document.querySelector('#discount_type').value;
+  let valueToDiscount;
+  // console.log(typeDiscount);
+  // typeDiscount.value.includes("fisso")
+  // if(typeDiscount.value == "fisso"){
+  if(typeDiscount == "fisso"){
+
+    
+    if(valueToSub>valueToTotal){
+      return
+    }else{
+      // console.log(typeDiscount);
+      valueToTotal -= valueToSub;
+      valueToTotal = valueToTotal.toFixed(2);
+      totalPriceElement.textContent = valueToTotal;
+      const inserTotal = document.querySelector(".total_amount_selector");
+      inserTotal.value = valueToTotal;
+    } 
+  }else{
+    if(valueToSub>100){
+      // console.log('troppo');
+      return
+    }else{
+      // console.log('ok');
+      
+      valueToDiscount = (valueToTotal * valueToSub) / 100;
+      valueToTotal = valueToTotal - valueToDiscount;
+
+      valueToTotal = valueToTotal.toFixed(2);
+      totalPriceElement.textContent = valueToTotal;
+      const inserTotal = document.querySelector(".total_amount_selector");
+      inserTotal.value = valueToTotal;
+    } 
+  }
+});
 
 /*
   my function for Upgrade the total price
@@ -123,45 +165,7 @@ function showUpgradePrice() {
 }
 
 
-/*
-  function for create a discount and applicate at total
-*/
 
-
-document.querySelector('#creasy-deal').addEventListener('click', () => {
-  const valueToSub = document.querySelector('#discount').value;
-  let valueToTotal = document.querySelector('#total_amount').value;
-  const typeDiscount = document.querySelector('#discount_type').value;
-  let valueToDiscount;
-  // console.log(typeDiscount);
-  // typeDiscount.value.includes("fisso")
-  // if(typeDiscount.value == "fisso"){
-  if(typeDiscount == "fisso"){
-
-    
-    if(valueToSub>valueToTotal){
-      return
-    }else{
-      // console.log(typeDiscount);
-      valueToTotal -= valueToSub;
-      valueToTotal = valueToTotal.toFixed(2);
-      totalPriceElement.textContent = valueToTotal;
-    } 
-  }else{
-    if(valueToSub>100){
-      // console.log('troppo');
-      return
-    }else{
-      // console.log('ok');
-      
-      valueToDiscount = (valueToTotal * valueToSub) / 100;
-      valueToTotal = valueToTotal - valueToDiscount;
-
-      valueToTotal = valueToTotal.toFixed(2);
-      totalPriceElement.textContent = valueToTotal;
-    } 
-  }
-});
 
 
 

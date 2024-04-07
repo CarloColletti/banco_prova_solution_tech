@@ -4,12 +4,13 @@
     {{-- IMG --}}
     <div class="col-2">
         <img src="{{ asset('storage/' . $product->product_image) }}" class="card-img-top img-fluid"
-            alt="product_photo_{{ $product->name }}">
+            alt="photo_{{ $product->name }}">
     </div>
 
     {{-- DETAIL PRODUCT --}}
     <div class="col-1">
         <input type="hidden" name="id_products[]" value="{{ $product->id }}">
+        <input type="hidden" name="name" value="{{ $product->name . $product->id }}">
         {{ $product->name }}
     </div>
 

@@ -5,7 +5,9 @@ namespace Modules\Orders\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Modules\Orders\Entities\Orders;
 use Modules\Product\Entities\Product;
 
 class OrdersController extends Controller
@@ -38,9 +40,27 @@ class OrdersController extends Controller
      */
     public function create(Request $request)
     {
-        $order = $request->all();
-        dd($order);
-        return view('orders::create');
+        $form_data = $request->all();
+        $productIds = $request->input('id_products');
+
+
+
+        // dd($form_data);
+
+        $order = new Orders();
+
+        $order->name = $form_data['name'];
+        $order->customer_id = Auth::id();
+        $order->discount = $form_data['discount'];
+        $order->discount_type = $form_data['discount_type'];
+        $order->total_amount = $form_data['total_amount'];
+
+        $order->save();
+
+        $order->products()->attach($productIds);
+
+
+        return redirect()->route('order.show');
     }
 
     /**
@@ -64,9 +84,13 @@ class OrdersController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show()
     {
-        return view('orders::show');
+        $author = Auth::id();
+        $orders = Orders::where('customer_id', $author)->with('products')->get();
+
+
+        return view('orders::show_order', compact('orders'));
     }
 
     /**
