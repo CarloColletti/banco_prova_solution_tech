@@ -138,12 +138,14 @@ document.querySelector('#creasy-deal').addEventListener('click', () => {
   // if(typeDiscount.value == "fisso"){
   if(typeDiscount == "fisso"){
 
+    
     if(valueToSub>valueToTotal){
+      return
+    }else{
+      // console.log(typeDiscount);
       valueToTotal -= valueToSub;
       valueToTotal = valueToTotal.toFixed(2);
       totalPriceElement.textContent = valueToTotal;
-    }else{
-      return
     } 
   }else{
     if(valueToSub>100){
