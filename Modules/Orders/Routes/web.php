@@ -18,16 +18,19 @@ use Illuminate\Support\Facades\Route;
 //     Route::get('/', 'OrdersController@index');
 // });
 
-Route::prefix('order')->group(function () {
+Route::prefix('order')->middleware('role:admin|customer')->group(function () {
     Route::get('/', 'OrdersController@index')->name('order.index');
     Route::get('/order_create', 'OrdersController@order_create')->name('order.cart');
     Route::post('/', 'OrdersController@store')->name('order.store');
     Route::post('/create', 'OrdersController@create')->name('order.create');
-    Route::get('/show_orders', 'OrdersController@show')->name('order.show');
     // Route::match(['put', 'patch'], '/{user}', 'OrdersController@update')->name('order.update');
     // Route::delete('/{order}', 'OrdersController@destroy')->name('order.destroy');
     // Route::get('/{ids}/edit', 'OrdersController@edit')->name('order.edit');
     // Route::get('/order/trash', 'OrdersController@trash')->name('order.trash');
     // Route::post('/order/{order}/restore', 'OrdersController@restore')->name('order.restore');
     // Route::delete('/order/{order}/force-delete', 'OrdersController@force_delete')->name('order.force_delete');
+});
+
+Route::prefix('order')->middleware('role:seller')->group(function () {
+    Route::get('/show_orders', 'OrdersController@show')->name('order.show');
 });

@@ -21,7 +21,7 @@ Route::get('/hola', function () {
     return view('welcome');
 });
 
-Route::get('/', [Home::class, 'home'])->name('home');
+Route::get('/', [Home::class, 'home'])->middleware('auth', 'role:admin')->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth', 'role:admin')->group(function () {
     Route::delete('/profile/{user}', function (User $user) {
         if ($user->id === auth()->user()->id) {
             return abort(403);
