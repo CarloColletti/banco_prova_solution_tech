@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/hola', function () {
-    return view('welcome');
-});
+Route::get('/', function () {
+    return view('guest.welcome');
+})->name('guest_home');
 
-Route::get('/', [Home::class, 'home'])->middleware('auth', 'role:admin')->name('home');
+Route::get('/home', [Home::class, 'home'])->middleware('auth', 'role:admin')->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
