@@ -15,53 +15,51 @@ class Userseeder extends Seeder
      */
     public function run()
     {
-        $new_user = new User;
-        $new_user->name = 'Carlo';
-        $new_user->email = 'callo12@mail.com';
-        $new_user->password = 'Gallo12';
+        $user = User::create([
+            'name' => 'Carlo',
+            'lastname' => 'Colletti',
+            'email' => 'admin@mail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$E/9Cf8BBsZ5XAIx/XrTx.On4bZRCJL/VwPxQLE1a0Ybhxr4uyscm.',
+            'fiscal_code' => 'CLCLCLCLCLCLCLCL',
+            'address' => 'Via dei geranei',
+            'province' => 'roma',
+            'city' => 'anzio',
+            'country' => 'italia',
+            'zip_code' => '00042',
+            'phone' => '3888888888',
+        ]);
 
-        $new_user->lastname = 'Colletti';
-        $new_user->fiscal_code = 'CLCLCLCLCLCLCLCL';
-        $new_user->address = 'Via dei geranei';
-        $new_user->province = 'roma';
-        $new_user->city = 'anzio';
-        $new_user->country = 'italia';
-        $new_user->zip_code = '00042';
-        $new_user->phone = '3888888888';
 
-        $new_user->save();
+        $user = User::create([
+            'name' => 'Marco',
+            'lastname' => 'Colletti',
+            'email' => 'customer@mail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$E/9Cf8BBsZ5XAIx/XrTx.On4bZRCJL/VwPxQLE1a0Ybhxr4uyscm.',
+            'fiscal_code' => 'CLCLCLCLCLCLCLCC',
+            'address' => 'Via dei geranei',
+            'province' => 'roma',
+            'city' => 'Tiburtina',
+            'country' => 'italia',
+            'zip_code' => '00011',
+            'phone' => '388888802',
+        ]);
 
 
-        $new_user = new User;
-        $new_user->name = 'Maroc';
-        $new_user->email = 'callo@mail.com';
-        $new_user->password = 'Gallo12';
-
-        $new_user->lastname = 'Colletti';
-        $new_user->fiscal_code = 'CLCLCLCLCLCLCLfr';
-        $new_user->address = 'Via dei geranei';
-        $new_user->province = 'roma';
-        $new_user->city = 'anzio';
-        $new_user->country = 'italia';
-        $new_user->zip_code = '00042';
-        $new_user->phone = '3888888888';
-
-        $new_user->save();
-
-        $new_user = new User;
-        $new_user->name = 'tizio';
-        $new_user->email = 'tiozio@mail.com';
-        $new_user->password = 'Gallo12';
-
-        $new_user->lastname = 'Colletti';
-        $new_user->fiscal_code = 'CLCLCLCLCLCLCLuu';
-        $new_user->address = 'Via dei geranei';
-        $new_user->province = 'roma';
-        $new_user->city = 'anzio';
-        $new_user->country = 'italia';
-        $new_user->zip_code = '00042';
-        $new_user->phone = '3888888888';
-
-        $new_user->save();
+        $user = User::create([
+            'name' => 'Gino',
+            'lastname' => 'Colletti',
+            'email' => 'seller@mail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$E/9Cf8BBsZ5XAIx/XrTx.On4bZRCJL/VwPxQLE1a0Ybhxr4uyscm.',
+            'fiscal_code' => 'CLCLCLCLCLCLCLSS',
+            'address' => 'Via dei geranei',
+            'province' => 'roma',
+            'city' => 'Colonia',
+            'country' => 'italia',
+            'zip_code' => '00182',
+            'phone' => '388888804',
+        ]);
     }
 }
