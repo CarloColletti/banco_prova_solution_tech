@@ -60,7 +60,7 @@ class OrdersController extends Controller
         $order->products()->attach($productIds);
 
 
-        return redirect()->route('order.show');
+        return redirect()->route('order.index');
     }
 
     /**

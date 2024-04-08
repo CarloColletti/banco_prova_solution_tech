@@ -17,7 +17,7 @@ Route::prefix('product')->group(function () {
     Route::get('/', 'ProductController@index');
 });
 
-Route::prefix('product')->group(function () {
+Route::prefix('product')->middleware('role:seller')->group(function () {
     Route::get('/', 'ProductController@index')->name('product.index');
     Route::post('/', 'ProductController@store')->name('product.store');
     Route::get('/create', 'ProductController@create')->name('product.create');
@@ -31,7 +31,7 @@ Route::prefix('product')->group(function () {
     Route::get('product/{id}/returnIdForForceDelete', 'ProductController@returnIdForForceDelete')->name('product.return_id_force_delete');
 });
 
-Route::prefix('quantity_edit')->group(function () {
+Route::prefix('quantity_edit')->middleware('role:seller')->group(function () {
     Route::get('/{id}/edit', 'MagazineController@edit')->name('product_magazine.edit');
     Route::match(['put', 'patch'], '/{id}/update', 'MagazineController@update')->name('product_magazine.update');
 });
